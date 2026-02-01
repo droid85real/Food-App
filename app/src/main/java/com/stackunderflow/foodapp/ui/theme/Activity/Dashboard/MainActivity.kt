@@ -28,8 +28,12 @@ fun MainScreen() {
     Scaffold(
         bottomBar = { MyBottomBar() }, scaffoldState = scaffoldState
     ) { paddingValues ->
-        LazyColumn(modifier = Modifier
-            .padding(paddingValues=paddingValues)
-            .fillMaxSize()) { }
+        LazyColumn(
+            modifier = Modifier
+                .padding(paddingValues = paddingValues)
+                .fillMaxSize()
+        ) {
+            item { TopBar() }
+        }
     }
 }
