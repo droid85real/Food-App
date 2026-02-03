@@ -56,6 +56,7 @@ fun MainScreen() {
         ) {
             item { TopBar() }
             item { Banner(banners,showBannerLoading) }
+            item { Search() }
         }
     }
 }
