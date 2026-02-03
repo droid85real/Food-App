@@ -41,6 +41,8 @@ android {
 dependencies {
     implementation (libs.androidx.xconstraintlayout.compose)
     implementation(libs.androidx.compose.material)
+    implementation(libs.coil.compose)
+    implementation("androidx.compose.foundation:foundation")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

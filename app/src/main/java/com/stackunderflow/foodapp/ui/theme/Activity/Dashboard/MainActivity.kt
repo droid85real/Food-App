@@ -9,7 +9,15 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Scaffold
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import com.stackunderflow.foodapp.Domain.BannerModel
+import com.stackunderflow.foodapp.ViewModel.MainViewModel
 import com.stackunderflow.foodapp.ui.theme.Activity.BaseActivity
 
 class MainActivity : BaseActivity() {
@@ -25,6 +33,19 @@ class MainActivity : BaseActivity() {
 @Composable
 fun MainScreen() {
     val scaffoldState = rememberScaffoldState()
+    val viewModel = MainViewModel()
+    val banners = remember { mutableStateListOf<BannerModel>() }
+
+    var showBannerLoading by remember { mutableStateOf(true) }
+
+    LaunchedEffect(Unit) {
+        viewModel.loadBanner().observeForever {
+            banners.clear()
+            banners.addAll(it)
+            showBannerLoading=false
+        }
+    }
+
     Scaffold(
         bottomBar = { MyBottomBar() }, scaffoldState = scaffoldState
     ) { paddingValues ->
@@ -34,6 +55,7 @@ fun MainScreen() {
                 .fillMaxSize()
         ) {
             item { TopBar() }
+            item { Banner(banners,showBannerLoading) }
         }
     }
 }
