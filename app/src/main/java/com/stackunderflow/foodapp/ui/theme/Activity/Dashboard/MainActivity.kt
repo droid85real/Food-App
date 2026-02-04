@@ -17,6 +17,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import com.stackunderflow.foodapp.Domain.BannerModel
+import com.stackunderflow.foodapp.Domain.CategoryModel
 import com.stackunderflow.foodapp.ViewModel.MainViewModel
 import com.stackunderflow.foodapp.ui.theme.Activity.BaseActivity
 
@@ -35,14 +36,24 @@ fun MainScreen() {
     val scaffoldState = rememberScaffoldState()
     val viewModel = MainViewModel()
     val banners = remember { mutableStateListOf<BannerModel>() }
+    val categories = remember { mutableStateListOf<CategoryModel>() }
 
     var showBannerLoading by remember { mutableStateOf(true) }
+    var showCategoryLoading by remember { mutableStateOf(true) }
 
     LaunchedEffect(Unit) {
         viewModel.loadBanner().observeForever {
             banners.clear()
             banners.addAll(it)
-            showBannerLoading=false
+            showBannerLoading = false
+        }
+    }
+
+    LaunchedEffect(Unit) {
+        viewModel.loadCategory().observeForever {
+            categories.clear()
+            categories.addAll(it)
+            showCategoryLoading = false
         }
     }
 
@@ -55,8 +66,9 @@ fun MainScreen() {
                 .fillMaxSize()
         ) {
             item { TopBar() }
-            item { Banner(banners,showBannerLoading) }
+            item { Banner(banners, showBannerLoading) }
             item { Search() }
+            item { CategorySection(categories, showCategoryLoading) }
         }
     }
 }

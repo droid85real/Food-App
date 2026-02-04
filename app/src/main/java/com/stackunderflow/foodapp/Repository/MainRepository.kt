@@ -7,9 +7,35 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.stackunderflow.foodapp.Domain.BannerModel
+import com.stackunderflow.foodapp.Domain.CategoryModel
 
 class MainRepository {
     private val firebaseDatabase= FirebaseDatabase.getInstance("https://myhelper-1b32c-default-rtdb.asia-southeast1.firebasedatabase.app/")
+
+    fun loadCategory(): LiveData<MutableList<CategoryModel>>{
+        val listData= MutableLiveData<MutableList<CategoryModel>>()
+        val ref=firebaseDatabase.getReference("Category")
+        ref.addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                println("Firebase snapshot exists: ${snapshot.exists()}")
+                println("Firebase children count: ${snapshot.childrenCount}")
+
+                val list=mutableListOf<CategoryModel>()
+                for (childSnapshot in snapshot.children){
+                    val item=childSnapshot.getValue(CategoryModel::class.java)
+                    println("Loaded banner item: $item")
+                    item?.let{list.add(it)}
+                }
+                listData.value=list
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+        return listData
+    }
 
     fun loadBanner(): LiveData<MutableList<BannerModel>>{
         val listData= MutableLiveData<MutableList<BannerModel>>()
