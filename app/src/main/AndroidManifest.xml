@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodApp">
         <activity
+            android:name=".ui.theme.Activity.itemsList.ItemsListActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.theme.Activity.BaseActivity"
             android:exported="false" />
         <activity
@@ -27,7 +30,7 @@
             android:name=".ui.theme.Activity.Dashboard.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.FoodApp"></activity>
+            android:theme="@style/Theme.FoodApp" />
     </application>
 
 </manifest>

@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.google.gms.google.services)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -43,6 +44,8 @@ dependencies {
     implementation(libs.androidx.compose.material)
     implementation(libs.coil.compose)
     implementation("androidx.compose.foundation:foundation")
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.androidx.compose.runtime.livedata)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
