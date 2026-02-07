@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.google.gms.google.services)
     alias(libs.plugins.kotlin.serialization)
+    id("kotlin-parcelize")
 }
 
 android {
@@ -43,9 +44,10 @@ dependencies {
     implementation (libs.androidx.xconstraintlayout.compose)
     implementation(libs.androidx.compose.material)
     implementation(libs.coil.compose)
-    implementation("androidx.compose.foundation:foundation")
+    implementation(libs.androidx.compose.foundation)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.androidx.compose.runtime.livedata)
+    implementation (libs.gson)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

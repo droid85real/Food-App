@@ -1,7 +1,10 @@
 package com.stackunderflow.foodapp.Domain
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.Serializable
 
+@Parcelize
 @Serializable
 data class FoodModel(
     var BestFood: Boolean = false,
@@ -17,5 +20,5 @@ data class FoodModel(
     var TimeValue: Int = 0,
     var Title: String = "",
     var Calorie: Int = 0,
-    var numberInCar: Int = 0,
-)
+    var numberInCart: Int = 0,
+): Parcelable

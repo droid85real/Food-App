@@ -16,10 +16,12 @@ material = "1.13.0"
 activity = "1.12.3"
 constraintlayout = "2.2.1"
 materialVersion = "1.10.2"
-xconstraintlayoutCompose = "1.1.0"
+xconstraintlayoutCompose = "1.1.1"
 runtimeLivedata = "1.10.2"
 
 [libraries]
+androidx-compose-foundation = { module = "androidx.compose.foundation:foundation" }
+gson = { module = "com.google.code.gson:gson" ,version="2.13.2" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version = "1.10.0" }
 androidx-compose-material = { module = "androidx.compose.material:material", version.ref = "materialVersion" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -50,4 +52,3 @@ android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 google-gms-google-services = { id = "com.google.gms.google-services", version.ref = "googleGmsGoogleServices" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-
