@@ -29,7 +29,14 @@ class DetailEachFoodActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        item = intent.getSerializableExtra("object") as FoodModel
+//        item = intent.getSerializableExtra("object") as FoodModel
+        item = if (android.os.Build.VERSION.SDK_INT >= 33) {
+            intent.getParcelableExtra("object", FoodModel::class.java)
+        } else {
+            @Suppress("DEPRECATION")
+            intent.getParcelableExtra("object")
+        } ?: error("FoodModel not found in intent")
+
         item.numberInCart = 1
         managmentCart = ManagmentCart(this)
 

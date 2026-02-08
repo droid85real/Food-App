@@ -1,5 +1,7 @@
 package com.stackunderflow.foodapp.ui.theme.Activity.Dashboard
 
+import android.content.Intent
+import android.widget.Toast
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
@@ -14,10 +16,11 @@ import androidx.compose.ui.res.painterResource
 import com.stackunderflow.foodapp.R
 import androidx.compose.material.BottomAppBar
 import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material.Icon
+import androidx.compose.material3.Icon
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.stackunderflow.foodapp.ui.theme.Activity.Cart.CartActivity
 
 @Preview
 @Composable
@@ -33,9 +36,9 @@ fun MyBottomBar() {
                 onClick = {
                     selectedItem = bottomMenuItem.label
                     if (bottomMenuItem.label == "Cart") {
-
+                        context.startActivity(Intent(context, CartActivity::class.java))
                     } else {
-
+                        Toast.makeText(context, bottomMenuItem.label, Toast.LENGTH_SHORT).show()
                     }
                 },
                 icon = {

@@ -9,14 +9,17 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Text
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
@@ -54,9 +57,11 @@ fun NumberRow(
                 color = colorResource(R.color.darkPurple),
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Center,
                 modifier = Modifier
                     .size(28.dp)
                     .background(color = Color.White, shape = CircleShape)
+                    .wrapContentSize(Alignment.Center)
                     .constrainAs(numberItemText) {
                         top.linkTo(parent.top)
                         bottom.linkTo(parent.bottom)
@@ -121,3 +126,23 @@ fun NumberRow(
         )
     }
 }
+//
+//@Preview(showBackground = true)
+//@Composable
+//fun NumberRowPreview() {
+//    val item = FoodModel(
+//        Title = "Pizza",
+//        Price = 199.0,
+//        ImagePath = "",
+//        numberInCart = 2
+//    )
+//
+//    val count = remember { mutableStateOf(2) }
+//
+//    NumberRow(
+//        item = item,
+//        numberInCart = count.value,
+//        onIncrement = { count.value++ },
+//        onDecrement = { if (count.value > 0) count.value-- }
+//    )
+//}
